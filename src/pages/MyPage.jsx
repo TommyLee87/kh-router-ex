@@ -1,13 +1,21 @@
-import { Link } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 const MyPage = () => {
-  return (
-    <>
-      <h1>여기는 마이페이지입니다.</h1>
-      <p>나의 정보를 수정할 수 있습니다.</p>
-      <Link to="/">Home으로 이동</Link>
-    </>
-  );
+  const navigate = useNavigate();
+  const isLogin = false;
+
+  if (isLogin) {
+    return (
+      <>
+        <h1>My Page</h1>
+        <p>여기는 My Page 입니다.</p>
+        {/* <Link to="/">Home으로 이동</Link> */}
+        <button onClick={() => navigate(-1)}>뒤로가기</button>
+      </>
+    );
+  } else {
+    return <Navigate to="/login" replace={true} />;
+  }
 };
 
 export default MyPage;
